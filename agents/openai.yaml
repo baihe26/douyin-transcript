@@ -1,0 +1,6 @@
+interface:
+  display_name: "抖音提取、GPU加速与分类"
+  short_description: "检查并补齐本地环境，GPU提取抖音原文、断点恢复与分类交付Word"
+  default_prompt: "使用 $douyin-transcript 整理这些抖音链接或指定范围，先检查并补齐本机语音、OCR与GPU环境，提取原文并核对断点状态，再分类归纳并按我的要求交付Word。"
+policy:
+  allow_implicit_invocation: true

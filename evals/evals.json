@@ -1,0 +1,76 @@
+{
+  "skill_name": "douyin-transcript",
+  "note": "Behavior examples, not a claim of live-account acceptance.",
+  "evals": [
+    {
+      "id": "batch-links",
+      "prompt": "这批链接提取原文后分类归纳",
+      "expected_output": "使用library batch，保存ASR/OCR原稿，逐条整理卡与整批分类，报告失败"
+    },
+    {
+      "id": "own-favorites",
+      "prompt": "整理我收藏夹所有视频",
+      "expected_output": "登录隔离浏览器，按favorites或精确folder范围，确认分页完整性；受阻结果标部分"
+    },
+    {
+      "id": "collected-mixes",
+      "prompt": "展开我收藏的全部合集",
+      "expected_output": "使用mixes，分页展开每个合集，跨合集去重但保留归属"
+    },
+    {
+      "id": "author",
+      "prompt": "整理这个作者所有视频",
+      "expected_output": "author逐页收集为逐视频任务，不扩到其他作者，末页确认才说全部"
+    },
+    {
+      "id": "resume",
+      "prompt": "继续上次任务",
+      "expected_output": "按当前脚本能力与原提交续跑，已完成产物不重做；新增内容用refresh；不启动重复worker"
+    },
+    {
+      "id": "gpu-memory-fallback",
+      "prompt": "OCR退回CPU了，日志出现BFCArena，但素材队列在正常保存。修好GPU继续。",
+      "expected_output": "读完整异常、故障帧、device时间和PID，检查arena shrinkage与分类显存；保留健康素材队列，修复并安全加载后对原故障和正式队列验证，CPU继续不称GPU恢复"
+    },
+    {
+      "id": "unknown-403",
+      "prompt": "剩余素材下载HTTP403，能不能自动继续？",
+      "expected_output": "暂停网络队列并查到期证据与正常页面状态；未知403不称封禁、不盲重试；只有确切到期且已授权正常页面可用才刷新；本地处理继续"
+    },
+    {
+      "id": "duplicate-and-media-count",
+      "prompt": "两个Python进程，旧PID被其他程序用了，baseline_saved加completed超过清单数。检查进度。",
+      "expected_output": "按脚本名和submission匹配父子树；有效登记与completed ID并集核对非空媒体；不将父子当重复，不以游标计完整提取"
+    },
+    {
+      "id": "new-author-avoids-old-scope",
+      "prompt": "用这套流程处理一个新的指定作者，GPU并行提取，最后给Word。",
+      "expected_output": "新清单新job；识别旧Chrome批次入口和分类plan的硬编码，先通用入口或派生适配；不直接运行旧八来源，不带入740或旧ID"
+    },
+    {
+      "id": "audio-m4a",
+      "prompt": "aweme_type163返回audio/mp4和ftyp，下载器说不是视频。",
+      "expected_output": "核对M4A音频、Content-Type/文件头/首秒解码，保存音频和封面，ASR音频OCR封面，兼容video_files只含MP3或M4A，封面不重复计作品"
+    },
+    {
+      "id": "assistant-word-and-stop-monitor",
+      "prompt": "停止定期检查，由你分类。科研理财创业进步一条一个Word，城市宇宙小说一类一个Word，太长分册。",
+      "expected_output": "停止对应自动化保留健康worker，助手实际阅读归纳，原稿与摘录标深度，按内容分类保留原归属，单条与主题Word、索引和全部ID核对；不把自动摘录称为全量精读"
+    },
+    {
+      "id": "missing-local-runtime",
+      "prompt": "换电脑处理这些抖音链接，没安装语音和OCR。",
+      "expected_output": "按阶段检查现有运行时，缺失则在工作区隔离安装官方依赖与权重，实际核验并接入原工具；保留用户媒体与健康环境。"
+    },
+    {
+      "id": "existing-text-only",
+      "prompt": "这些原稿已提取完，只由你重分类和生成Word。",
+      "expected_output": "只检查所需Word能力，不重采集，不安装不需要的ASR/OCR或本地分类器。"
+    },
+    {
+      "id": "gpu-installed-but-fallback",
+      "prompt": "已装onnxruntime-gpu，是否可以直接开GPU？",
+      "expected_output": "检查驱动配套、三模型首provider与实际推理，CPU fallback不称GPU就绪；保留原配置，修复再验证。"
+    }
+  ]
+}
